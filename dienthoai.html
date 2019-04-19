@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function mobie(namePhone,pin) {
+            this.namePhone= namePhone;
+            this.pin = pin;
+            this.editor = [];
+            this.inbox = [];
+            this.send = [];
+            this.tatBat = true;
+            this.checkPin = function () {
+                if(this.pin < 10) {
+                    document.write("Hay sac pin")
+                }
+            }
+
+            this.checkStatus = function () {
+                if (this.tatBat) {
+                    document.write("Dien thoai duoc mo" + "</br>")
+                } else {
+                    document.write("Goodbye" +"</br>")
+                }
+                this.pin --;
+            };
+
+            this.turnOnOff = function () {
+                this.tatBat = !this.tatBat;
+                this.checkStatus();let j = 0;
+            };
+
+            this.charge = function () {
+                while (this.pin < 100) {
+                    this.pin ++;
+
+                }
+                document.write("Dung luong pin la " + this.pin)
+            };
+
+            this.editorMess = function (message) {
+                if(this.tatBat) {
+                    let i = 0;
+                    this.editor[i] = message;
+                    this.editor.push(message);
+                    i ++;
+                    this.pin --;
+                }
+                this.checkPin();
+            };
+
+
+            this.sendMess = function (namePhone) {
+                if(this.tatBat) {
+                    let j = 0;
+                    namePhone.inbox.push(this.editor[j]);
+                    this.send.push(this.editor[j]);
+
+                    j++;
+                    this.pin --;
+                }
+                this.checkPin();
+            };
+
+            this.inboxMess = function () {
+                if(this.tatBat) {
+                    for (let k = 0; k < this.inbox.length; k ++) {
+                        document.write(this.inbox[k] + "</br>")
+                    }
+                    this.pin --;
+                }
+                this.checkPin();
+            };
+
+
+        }
+
+        let iphone = new mobie('iphone', 100);
+        let nokia = new mobie('nokia' , 100);
+
+        nokia.editorMess('asdasd');
+        nokia.sendMess(iphone);
+        iphone.inboxMess();
+
+
+    </script>
+</body>
+</html>
